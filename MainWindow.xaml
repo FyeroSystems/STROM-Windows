@@ -1,0 +1,27 @@
+<Window
+    x:Class="STROM.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    Title="STRÖM">
+
+    <Grid>
+        <muxc:TabView x:Name="MainTabView" IsAddTabButtonVisible="False">
+            <muxc:TabViewItem Header="Steuerung">
+                <ScrollViewer>
+                    <StackPanel x:Name="ControlPanel" Margin="16" Spacing="8"/>
+                </ScrollViewer>
+            </muxc:TabViewItem>
+            <muxc:TabViewItem Header="Taster">
+                <ScrollViewer>
+                    <StackPanel x:Name="ControllerPanel" Margin="16" Spacing="8"/>
+                </ScrollViewer>
+            </muxc:TabViewItem>
+            <muxc:TabViewItem Header="Einstellungen">
+                <ScrollViewer>
+                    <StackPanel x:Name="SettingsPanel" Margin="16" Spacing="8"/>
+                </ScrollViewer>
+            </muxc:TabViewItem>
+        </muxc:TabView>
+    </Grid>
+</Window>
