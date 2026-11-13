@@ -23,16 +23,23 @@ public sealed partial class MainWindow : Window
         this.InitializeComponent();
         Title = "STRÖM";
 
-        // Fenstergröße setzen (WinUI 3 erlaubt Width/Height nicht direkt im XAML)
-        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-        var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
-        var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
-        appWindow.Resize(new Windows.Graphics.SizeInt32(800, 700));
+        this.Activated += MainWindow_Activated;
 
         LoadData();
         BuildSettingsUI();
         RefreshControlUI();
         RefreshControllerUI();
+    }
+
+    private void MainWindow_Activated(object sender, WindowActivatedEventArgs args)
+    {
+        // Fenstergröße setzen, nachdem das Fenster aktiviert wurde
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+        var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
+        var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+        appWindow.Resize(new Windows.Graphics.SizeInt32(800, 700));
+
+        this.Activated -= MainWindow_Activated; // nur einmal
     }
 
     private void LoadData()
